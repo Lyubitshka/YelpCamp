@@ -17,14 +17,10 @@
                     Nice!
                 </div>
             </div>
-            <input type="file" name="image" id="">
-            <!-- <div class="mb-3">
-                <label class="form-label" for="image">Image URL</label>
-                <input class="form-control" type="text" id="image" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Well done!
-                </div>
-            </div> -->
+            <div class="mb-3">
+                <label for="image" class="form-label">Choose image(s)...</label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Campground Price</label>
                 <div class="input-group mb-3">
@@ -39,11 +35,15 @@
                 <label class="form-label" for="description">Description</label>
                 <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
             </div>
+            
             <div class="mb-3">
                 <button class="btn btn-success">Add Campground</button>
             </div>
         </form>
-        <a href="/campgrounds">All Campgrounds</a>
+        <div class="mb-3">
+            <a href="/campgrounds"  class="btn btn-primary">Back to all Campgrounds</a>
+        </div>
+       
     </div>
 </div>
 
