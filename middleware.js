@@ -12,12 +12,12 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 };
 
-module.exports.checkReturnTo = (req, res, next) => {
-    if(req.session.returnTo) {
-        res.locals.returnTo = req.session.returnTo;
-    }
-    next();
-};
+// module.exports.checkReturnTo = (req, res, next) => {
+//     if(req.session.returnTo) {
+//         res.locals.returnTo = req.session.returnTo;
+//     }
+//     next();
+// };
 
 module.exports.validateCampground = (req, res, next) =>{    
     const { error } = campgroundSchema.validate(req.body);
