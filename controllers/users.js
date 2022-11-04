@@ -21,13 +21,16 @@ module.exports.register = async(req, res) => {
 }
 
 module.exports.renderLogin = (req, res) => {
+    if (req.query.returnTo) {
+        req.session.returnTo = req.query.returnTo;
+    }
     res.render('users/login');
 }
 
 module.exports.login = (req, res) => {
-    const redirectUrl = req.session.returnTo || '/campgrounds';
-    delete req.session.returnTo;
-    // const redirectUrl = res.locals.redirectUrl || '/campgrounds';
+    // const redirectUrl = req.session.returnTo || '/campgrounds';
+    // delete req.session.returnTo;
+    const redirectUrl = res.locals.redirectTo || '/campgrounds';
     // delete res.locals.redirectUrl;
     req.flash('success', 'Welcome back!');
     res.redirect(redirectUrl);
