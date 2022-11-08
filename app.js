@@ -26,11 +26,11 @@ const userRoutes = require('./routes/users');
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewsRoutes = require('./routes/reviews');
 
-mongoose.connect('mongodb://localhost:27017/yelpCamp', {
-    useNewUrlParser: true,
-    // useCreateIndex: true,
-    // useUnifiedTopology: true
-});
+const MongoStore = require('connect-mongo');
+
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelpCamp'
+
+mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -49,8 +49,21 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname , 'public')));
 
+const secret = process.env.SECRET || 'thisisasecret';
+
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on('error', function(e) {
+    console.log('Session store error', e)
+});
+
 const sessionConfig = {
-    secret: 'thisisasecret',
+    store,
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -61,7 +74,6 @@ const sessionConfig = {
 }
 app.use(session(sessionConfig));
 app.use(flash());
-
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
