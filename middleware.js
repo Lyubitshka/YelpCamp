@@ -59,3 +59,10 @@ module.exports.validateReview = (req, res, next) => {
         next();
     }
 }
+
+module.exports.storeReturnTo = (res, req, next) => {
+    if (req.session.returnTo) {
+        res.locals.returnTo = req.session.returnTo;
+    }
+    next();
+}
