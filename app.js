@@ -29,7 +29,7 @@ const reviewsRoutes = require('./routes/reviews');
 const MongoStore = require('connect-mongo');
 mongoose.set("strictQuery", true);
 const dbUrl = 'mongodb://127.0.0.1:27017/yelpCamp'
-
+mongoose.set('strictQuery', true);
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -77,26 +77,29 @@ app.use(flash());
 
 const scriptSrcUrls = [
     "https://stackpath.bootstrapcdn.com/",
-    "https://api.tiles.mapbox.com/",
-    "https://api.mapbox.com/",
+    // "https://api.tiles.mapbox.com/",
+    // "https://api.mapbox.com/",
     "https://kit.fontawesome.com/",
     "https://cdnjs.cloudflare.com/",
     "https://cdn.jsdelivr.net",
+    "https://cdn.maptiler.com/", // add this
 ];
 const styleSrcUrls = [
     "https://kit-free.fontawesome.com/",
     "https://stackpath.bootstrapcdn.com/",
-    "https://api.mapbox.com/",
-    "https://api.tiles.mapbox.com/",
+    // "https://api.mapbox.com/",
+    // "https://api.tiles.mapbox.com/",
     "https://fonts.googleapis.com/",
     "https://use.fontawesome.com/",
-    "https://cdn.jsdelivr.net"
+    "https://cdn.jsdelivr.net",
+    "https://cdn.maptiler.com/", // add this
 ];
 const connectSrcUrls = [
-    "https://api.mapbox.com/",
+    // "https://api.mapbox.com/",
     // "https://a.tiles.mapbox.com/",
-    "https://*.tiles.mapbox.com/",
-    "https://events.mapbox.com/",
+    // "https://b.tiles.mapbox.com/",
+    // "https://events.mapbox.com/",
+    "https://api.maptiler.com/", // add this
 ];
 const fontSrcUrls = [];
 // app.use(helmet({ contentSecurityPolicy: false }))
@@ -115,6 +118,7 @@ app.use(
                 "data:",
                 "https://res.cloudinary.com/dpx3m7idk/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
                 "https://images.unsplash.com/",
+                "https://api.maptiler.com/"
             ],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
