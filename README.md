@@ -9,7 +9,7 @@ Built with modern web technologies, it features a responsive design, interactive
 - 🌍 Interactive maps with geocoding functionality.  
 - 🖼️ Image upload and storage for campsites.  
 - 🔐 User authentication and authorization using cookies and sessions.  
-- 🚀 Deployed on Heroku with cloud database integration.  
+- 🌟 Add reviews and ratings for campgrounds.  
 
 ## Tech Stack  
 ### Frontend  
